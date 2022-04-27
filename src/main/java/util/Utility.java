@@ -1,61 +1,38 @@
-package util;
+<%@ page import="util.Utility"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
+<%
 
-/**
- * メソッドをまとめたUtilityクラス
- */
-public class Utility {
+    // 入力値を取得
+    request.setCharacterEncoding("UTF-8");
+    String widthStr = request.getParameter("width");
+    String heightStr = request.getParameter("height");
+    String btn = request.getParameter("btn");
 
-    /*
-      下記処理を追加、修正してください。
+    double result = 0;
 
-    <getTriangleArea、getRectangleAreaメソッド>
-      1) このメソッド内では、変数widthとheightを定義しています。
-         (今の時点では変数width、heightはどこでも使っていないため、警告が出ています)　
-         この変数に引数で受け取った値を数値に変換して代入してください。
-         ただし、未入力の場合は数値に変換できないため、isNullOrEmptyメソッドを使って、
-         未入力でない場合のみ、数値に変換してください。
-         例): if (!isNullOrEmpty(widthStr)) {
-                // 数値に変換
-              }
-      
-      2) 変数widthとheightを使って、面積を計算し、returnしてください。
-         ただし、double型に変換して、返却してください。
-        (キャスト演算子を使ってください)
-
-      <isNullOrEmptyメソッド>
-      1) このメソッドは、引数に指定した文字列がnull、または空文字かを
-         判定するメソッドですが、今は必ずfalseが返ってくるようになっています。
-         引数の値がnull、または空文字の場合は、true
-         それ以外の場合は、falseを返すように修正してください。
-
-    */
-
-    /**
-     * 引数を数値に変換し、三角形の面積を求める
-     */
-    public static double getTriangleArea(String widthStr, String heightStr) {
-        int width = 0;
-        int height = 0;
-
-        return 0;
+    if ("triangle".equals(btn)){
+    	result = Utility.getTriangleArea(widthStr, heightStr);
+    }
+    else if ("rectangle".equals(btn)){
+    	result = Utility.getRectangleArea(widthStr, heightStr);
     }
 
-    /**
-     * 引数を数値に変換し、長方形の面積を求める
-     */
-    public static double getRectangleArea(String widthStr, String heightStr) {
-        int width = 0;
-        int height = 0;
+%>
 
-        return 0;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java基礎_演習問題5</title>
+</head>
+<body>
+  <h1>Java基礎 - 演習問題5</h1>
 
-    /**
-     * 引数に指定した文字列がnull、または空文字かを判定
-     */
-    public static boolean isNullOrEmpty(String str) {
-        // todo:引数の値がnull、または空文字の場合は、true
-        // それ以外の場合は、falseを返すように処理を修正する
-        return false;
-    }
-}
+  <h2>計算結果</h2>
+  <p>
+    面積：<%=result%><br>
+  </p>
+  <a href="javaBasic5_input.jsp">戻る</a>
+</body>
+</html>

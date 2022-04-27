@@ -6,13 +6,34 @@
 <%
 
     // 入力値を取得
-
+	request.setCharacterEncoding("UTF-8");
+    String product1 = request.getParameter("product1");
+    String product2 = request.getParameter("product2");
+    String amount1 = request.getParameter("amount1");
+    String amount2 = request.getParameter("amount2");
+    String rank = request.getParameter("rank");
     // 数値に変換
-
+	int amountInt1 = 0;
+	int amountInt2 = 0;
     // ポイントを定義
-
+	int point1 = 0;
+	int point2 = 0;
+	
+	if (!ParamUtil.isNullOrEmpty(amount1)) {
+		amountInt1 = Integer.parseInt(amount1);
+    }
+    if (!ParamUtil.isNullOrEmpty(amount2)) {
+    	amountInt2 = Integer.parseInt(amount2);
+    }
     // メソッドを呼んでポイントを取得
-
+	if(!ParamUtil.isNullOrEmpty(rank)){
+		int rankInt = Integer.parseInt(rank);
+		point1 = ParamUtil.getPoint(amountInt1,rankInt);
+		point2 = ParamUtil.getPoint(amountInt2,rankInt);
+	}else{
+		point1 = ParamUtil.getPoint(amountInt1);
+		point2 = ParamUtil.getPoint(amountInt2);
+	}
 %>
 
 <!DOCTYPE html>
@@ -38,14 +59,14 @@
       <th>ポイント</th>
     </tr>
     <tr>
-      <td>xxx</td>
-      <td class="right">xxx</td>
-      <td class="right">xxx</td>
+      <td><%=product1 %></td>
+      <td class="right"><%=amountInt1 %></td>
+      <td class="right"><%=point1 %></td>
     </tr>
     <tr>
-      <td>xxx</td>
-      <td class="right">xxx</td>
-      <td class="right">xxx</td>
+      <td><%=product2 %></td>
+      <td class="right"><%=amountInt2 %></td>
+      <td class="right"><%=point2 %></td>
     </tr>
   </table>
 
